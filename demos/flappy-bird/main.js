@@ -160,10 +160,10 @@ var gapSize = 250,
   maxGapY = height - gapSize,
   gapY = Math.floor(Math.random() * maxGapY),
   speed = 3,
-  interval = 300;
+  interval = 275;
 
 // Agents
-const agentStructure = [6, 3, 1],
+const agentStructure = [6, 6, 1],
   agentColor = rgbaToString([255, 100, 0], 0.5),
   agentX = 25,
   agentR = 25,
@@ -192,6 +192,7 @@ var spawnTargetDistance = interval;
 var obstacles = [createObstacle(), createObstacle(width + interval)];
 
 // Agent evolution
+var generation = 0;
 var numAgents = 100;
 var pick = 3;
 var mutationsPerClone = 10;
@@ -229,7 +230,7 @@ function draw() {
         (height - obstacles[1].gy) / height // second obstacle position
       ]);
   
-      if (activations[1][0] > 0.5) {
+      if (activations[activations.length - 1][0] > 0.5) {
         a.vel = jumpStrength;
       }
   
@@ -347,6 +348,7 @@ function draw() {
       distanceTraveled = 0;
       spawnTargetDistance = interval;
       score = 0;
+      generation++;
     }
     else {
       if (focusedDead) {
@@ -389,7 +391,8 @@ function draw() {
   }
 
   ctx.fillStyle = "#000000";
-  ctx.fillText(score.toString(), 100, 100);
+  ctx.fillText("Score: " + score.toString(), 550, 930);
+  ctx.fillText("Generation: " + generation.toString(), 550, 980);
 
 
   window.requestAnimationFrame(draw);
