@@ -134,7 +134,7 @@ class Agent {
   }
 
   draw() {
-    ctx.fillStyle = this.focused ? rgbToString([0, 0, 0]) : agentColor;
+    ctx.fillStyle = this.focused ? rgbToString([0, 0, 255]) : agentColor;
     ctx.beginPath();
     ctx.arc(agentX, this.y, agentR, 0, 2 * Math.PI);
     ctx.fill();
@@ -377,10 +377,17 @@ function draw() {
     o.draw();
   }
 
-  // Agents draw
+  // Agents draw (draw focused agent last)
+  let focusedAgent = null;
   for (let a of livingAgents) {
-    a.draw();
+    if (a.focused) {
+      focusedAgent = a;
+    }
+    else {
+      a.draw();
+    }
   }
+  focusedAgent.draw();
 
   if (focusedAi) {
     // Neural network window
