@@ -163,7 +163,7 @@ var gapSize = 250,
   interval = 275;
 
 // Agents
-const agentStructure = [6, 6, 1],
+const agentStructure = [6, 6, 3, 1],
   agentColor = rgbaToString([255, 100, 0], 0.5),
   agentX = 25,
   agentR = 25,
@@ -193,10 +193,10 @@ var obstacles = [createObstacle(), createObstacle(width + interval)];
 
 // Agent evolution
 var generation = 0;
-var numAgents = 100;
+var numAgents = 200;
 var pick = 3;
-var mutationsPerClone = 10;
-var mutationRange = 0.2;
+var mutationsPerClone = 1;
+var mutationRange = 0.1;
 
 var livingAgents = [];
 var deadAgents = [];
@@ -391,7 +391,8 @@ function draw() {
   }
 
   ctx.fillStyle = "#000000";
-  ctx.fillText("Score: " + score.toString(), 550, 930);
+  ctx.fillText("Score: " + score.toString(), 550, 880);
+  ctx.fillText("Alive: " + livingAgents.length, 550, 930)
   ctx.fillText("Generation: " + generation.toString(), 550, 980);
 
 
