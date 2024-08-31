@@ -134,7 +134,7 @@ class Agent {
   }
 
   draw() {
-    ctx.fillStyle = this.focused ? rgbToString([0, 0, 255]) : agentColor;
+    ctx.fillStyle = this.focused ? rgbToString([0, 150, 255]) : agentColor;
     ctx.beginPath();
     ctx.arc(agentX, this.y, agentR, 0, 2 * Math.PI);
     ctx.fill();
